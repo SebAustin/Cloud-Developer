@@ -1,0 +1,33 @@
+# Elastic Beanstalk ignore file
+# Files and directories listed here will not be included in the EB deployment
+
+# Git
+.git/
+.gitignore
+
+# Dependencies (will be installed on EB)
+node_modules/
+
+# Environment variables (configure on EB directly)
+.env
+.env.local
+
+# Development files
+.vscode/
+.idea/
+
+# Documentation
+deployment_screenshots/
+*.md
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+/tmp/
+*.tmp

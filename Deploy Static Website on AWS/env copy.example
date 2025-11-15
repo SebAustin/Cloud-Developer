@@ -1,0 +1,54 @@
+# AWS Static Website Deployment Configuration
+# Copy this file to .env and customize the values for your deployment
+
+# ==================================================
+# AWS REGION
+# ==================================================
+# The AWS region where your S3 bucket and CloudFront distribution will be created
+# 
+# Common regions:
+#   us-east-1      - US East (N. Virginia) - Default, most services available
+#   us-east-2      - US East (Ohio)
+#   us-west-1      - US West (N. California)
+#   us-west-2      - US West (Oregon)
+#   eu-west-1      - Europe (Ireland)
+#   eu-central-1   - Europe (Frankfurt)
+#   ap-southeast-1 - Asia Pacific (Singapore)
+#   ap-northeast-1 - Asia Pacific (Tokyo)
+#
+# Default: us-east-1
+AWS_REGION=us-east-1
+
+# ==================================================
+# S3 BUCKET NAME PREFIX
+# ==================================================
+# The prefix for your S3 bucket name
+# A timestamp will be automatically appended to ensure uniqueness
+# 
+# Bucket naming rules:
+#   - Only lowercase letters, numbers, and hyphens
+#   - Must be between 3 and 63 characters
+#   - Must start and end with a letter or number
+#   - Must be globally unique across ALL AWS accounts
+#
+# Example: If you set BUCKET_PREFIX=my-website
+#          The actual bucket name will be: my-website-20241113-120000
+#
+# Default: udacity-static-website
+BUCKET_PREFIX=udacity-static-website
+
+# ==================================================
+# ADDITIONAL NOTES
+# ==================================================
+#
+# No AWS credentials should be stored in this file!
+# AWS credentials should be configured using 'aws configure' command
+# or through environment variables (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+#
+# To use this configuration:
+# 1. Copy this file: cp env.example .env
+# 2. Edit .env with your preferred values
+# 3. Run the deployment script: ./deploy.sh
+#
+# The .env file is gitignored and will not be committed to version control
+
