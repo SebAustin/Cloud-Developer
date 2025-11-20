@@ -1,0 +1,63 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+  reverseproxy:
+    image: reverseproxy
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - backend-user
+      - backend-feed
+  
+  backend-user:
+    image: udagram-api-user
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: postgres
+      POSTGRES_DISABLE_SSL: "true"
+      AWS_REGION: us-east-1
+      AWS_PROFILE: default
+      AWS_BUCKET: udagram-local-bucket
+      JWT_SECRET: hello
+      URL: http://localhost:8100
+  
+  backend-feed:
+    image: udagram-api-feed
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: postgres
+      POSTGRES_DISABLE_SSL: "true"
+      AWS_REGION: us-east-1
+      AWS_PROFILE: default
+      AWS_BUCKET: udagram-local-bucket
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+      JWT_SECRET: hello
+      URL: http://localhost:8100
+  
+  frontend:
+    image: udagram-frontend
+    ports:
+      - "8100:80"
+
+volumes:
+  postgres_data:

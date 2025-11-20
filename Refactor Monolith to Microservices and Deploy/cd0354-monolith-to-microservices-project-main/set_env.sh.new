@@ -1,0 +1,12 @@
+# Udagram Environment Variables
+# Updated with actual AWS resources
+
+export POSTGRES_USERNAME=udagramadmin
+export POSTGRES_PASSWORD=PLACEHOLDER_PASSWORD
+export POSTGRES_HOST=udagram-db.centnkisklgf.us-east-1.rds.amazonaws.com
+export POSTGRES_DB=postgres
+export AWS_BUCKET=udagram-shenry-$(date +%s)
+export AWS_REGION=us-east-1
+export AWS_PROFILE=default
+export JWT_SECRET=$(openssl rand -base64 32)
+export URL=http://localhost:8100

@@ -1,0 +1,11 @@
+node_modules
+.git
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+.env
+npm-debug.log
+www
+e2e
+udagram_tests

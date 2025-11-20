@@ -1,0 +1,102 @@
+Name:                                                  backend-feed-hpa
+Namespace:                                             default
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Sun, 16 Nov 2025 15:51:19 +0100
+Reference:                                             Deployment/backend-feed
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (1m) / 70%
+Min replicas:                                          2
+Max replicas:                                          5
+Deployment pods:                                       3 current / 2 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    SucceededRescale  the HPA controller was able to update the target scale to 2
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+Events:
+  Type     Reason                        Age    From                       Message
+  ----     ------                        ----   ----                       -------
+  Warning  FailedGetResourceMetric       7m7s   horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedComputeMetricsReplicas  7m7s   horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedGetResourceMetric       6m52s  horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedComputeMetricsReplicas  6m52s  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Normal   SuccessfulRescale             6m37s  horizontal-pod-autoscaler  New size: 3; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             6m22s  horizontal-pod-autoscaler  New size: 4; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             5m52s  horizontal-pod-autoscaler  New size: 5; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             36s    horizontal-pod-autoscaler  New size: 4; reason: All metrics below target
+  Normal   SuccessfulRescale             21s    horizontal-pod-autoscaler  New size: 3; reason: All metrics below target
+  Normal   SuccessfulRescale             6s     horizontal-pod-autoscaler  New size: 2; reason: All metrics below target
+
+
+Name:                                                  backend-user-hpa
+Namespace:                                             default
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Sun, 16 Nov 2025 15:51:21 +0100
+Reference:                                             Deployment/backend-user
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (0) / 70%
+Min replicas:                                          2
+Max replicas:                                          5
+Deployment pods:                                       2 current / 2 desired
+Conditions:
+  Type            Status  Reason               Message
+  ----            ------  ------               -------
+  AbleToScale     True    ScaleDownStabilized  recent recommendations were higher than current one, applying the highest recent recommendation
+  ScalingActive   True    ValidMetricFound     the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas       the desired replica count is less than the minimum replica count
+Events:
+  Type     Reason                        Age    From                       Message
+  ----     ------                        ----   ----                       -------
+  Warning  FailedGetResourceMetric       7m6s   horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedComputeMetricsReplicas  7m6s   horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedGetResourceMetric       6m51s  horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedComputeMetricsReplicas  6m51s  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Normal   SuccessfulRescale             6m36s  horizontal-pod-autoscaler  New size: 3; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             80s    horizontal-pod-autoscaler  New size: 2; reason: All metrics below target
+
+
+Name:                                                  frontend-hpa
+Namespace:                                             default
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Sun, 16 Nov 2025 15:51:23 +0100
+Reference:                                             Deployment/frontend
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  1% (1m) / 70%
+Min replicas:                                          2
+Max replicas:                                          5
+Deployment pods:                                       2 current / 2 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    ReadyForNewScale  recommended size matches current size
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+Events:
+  Type     Reason                        Age   From                       Message
+  ----     ------                        ----  ----                       -------
+  Warning  FailedGetResourceMetric       7m4s  horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedComputeMetricsReplicas  7m4s  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+
+
+Name:                                                  reverseproxy-hpa
+Namespace:                                             default
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Sun, 16 Nov 2025 15:51:25 +0100
+Reference:                                             Deployment/reverseproxy
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  1% (1m) / 70%
+Min replicas:                                          2
+Max replicas:                                          5
+Deployment pods:                                       2 current / 2 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    ReadyForNewScale  recommended size matches current size
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooFewReplicas    the desired replica count is less than the minimum replica count
+Events:           <none>
